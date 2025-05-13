@@ -1,0 +1,25 @@
+name: docker react test
+on:
+  push:
+    branches: ['main', 'master']
+
+jobs:
+  react-test:
+    runs-on: ubuntu-latest
+    services:
+      prod:
+        container_name: prod-container
+        build:
+          context: .
+          dockerfile: Dockerfile.test
+        ports:
+          - '8080:80'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build and run tests
+        run: |
+          docker build -f Dockerfile.test -t react-test .
+          docker run --rm react-test

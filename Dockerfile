@@ -3,7 +3,6 @@ FROM node:alpine AS builder
 WORKDIR '/app'
 COPY package*.json ./
 RUN npm install
-VOLUME [ "/app/node_modules",".:/app" ]
 COPY . .
 RUN npm run build
 
