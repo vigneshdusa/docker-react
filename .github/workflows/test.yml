@@ -1,4 +1,5 @@
 name: docker react test
+
 on:
   push:
     branches: ['main', 'master']
@@ -6,19 +7,18 @@ on:
 jobs:
   react-test:
     runs-on: ubuntu-latest
-    services:
-      prod:
-        build:
-          context: .
-          dockerfile: Dockerfile.test
-        ports:
-          - '8080:80'
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Build and run tests
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
         run: |
           docker build -f Dockerfile.test -t react-test .
+
+      - name: Run tests inside Docker container
+        run: |
           docker run --rm react-test
