@@ -2,7 +2,9 @@ services:
   - docker
   
 before_install:
-  docker build -t vigneshdusa/docker-react -f Dockerfile.dev .
+  - docker build -t vigneshdusa/docker-react -f Dockerfile.dev .
+  - gem install nokogiri --platform=ruby
+  - bundle config set force_ruby_platform true
   
 script:
   docker run --name docker-react-test vigneshdusa/docker-react npm run test -- --watchAll=false
