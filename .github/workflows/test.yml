@@ -17,7 +17,7 @@ jobs:
           registry-type: public
           mask-password: true
           skip-logout: false
-          region: ${{ secrets.AWS_REGION }}
+          registries: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
 
       - name: Build, tag, and push image to Amazon ECR
         env:
