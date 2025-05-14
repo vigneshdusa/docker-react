@@ -22,11 +22,12 @@ jobs:
       - name: Deploy to Elastic Beanstalk
         uses: einaregilsson/beanstalk-deploy@v20
         with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }
           region: "eu-north-1"
           application_name: "docker-react"
           environment_name: "docker-react-env"
-          bucket_name: "elasticbeanstalk-eu-north-1-439537465395"
-          bucket_path: "docker-react"
+          existing_bucket_name: "elasticbeanstalk-eu-north-1-439537465395"
           version_label: ${{ github.sha }}
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
