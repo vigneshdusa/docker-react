@@ -37,7 +37,7 @@ jobs:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           region: ${{ secrets.AWS_REGION }}
-          application_name: "docker-react"
-          environment_name: "docker-react-env"
+          application_name: "docker-react-1"
+          environment_name: "docker-react-1-env"
           version_label: ${{ github.sha }}
           deployment_package: ./Dockerrun.aws.json
