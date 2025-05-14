@@ -9,4 +9,5 @@ script:
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push docker-react
+  - docker tag docker-react $DOCKER_USERNAME/docker-react
+  - docker push $DOCKER_USERNAME/docker-react
