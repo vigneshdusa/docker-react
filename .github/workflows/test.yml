@@ -40,4 +40,4 @@ jobs:
           application_name: "docker-react"
           environment_name: "docker-react-env"
           version_label: ${{ github.sha }}
-          docker_image: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/docker-react:${{ github.sha }}
+          deployment_package: ./Dockerrun.aws.json

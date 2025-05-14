@@ -1,0 +1,13 @@
+{
+    "AWSEBDockerrunVersion": "2",
+    "Image": {
+      "Name": "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/docker-react:${GITHUB_SHA}",
+      "Update": "true"
+    },
+    "Ports": [
+      {
+        "ContainerPort": "80"
+      }
+    ]
+  }
+  
