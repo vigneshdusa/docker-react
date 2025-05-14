@@ -2,22 +2,11 @@ services:
   - docker
   
 before_install:
-  - docker build -t vigneshdusa/docker-react -f Dockerfile.dev .
-  - gem install nokogiri --platform=ruby
-  - bundle config set force_ruby_platform true
+  - docker build -t docker-react -f Dockerfile.dev .
   
 script:
-  docker run --name docker-react-test vigneshdusa/docker-react npm run test -- --watchAll=false
+  docker run --name docker-react-test docker-react npm run test -- --watchAll=false
 
-deploy:
-  provider: elasticbeanstalk
-  region: "eu-north-1"
-  app: "docker-react"
-  env: "docker-react-env"
-  bucket-name: "elasticbeanstalk-eu-north-1-439537465395"
-  bucket-path: "docker-react"
-  on:
-    branch: master
-  access-key-id: "$AWS-ACCESS-KEY"
-  secret-access-key:
-    secure: "$AWS-SECRET-ACCESS-KEY"
+after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push docker-react

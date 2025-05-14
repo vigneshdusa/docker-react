@@ -8,6 +8,8 @@ RUN npm run build
 
 # Production Stage
 FROM nginx
+EXPOSE 8000
+COPY './nginx/default.conf' '/etc/nginx/conf.d/default.conf'
 COPY  --from=builder '/app/build' '/usr/share/nginx/html'
 
 # Optional: copy custom nginx config if needed
